@@ -6,9 +6,10 @@ namespace Mapster;
 
 public static class TypeAdapterConfigExtension
 {
-    public static TypeAdapterConfig LoadProtobufConfig(this TypeAdapterConfig config)
+    public static TypeAdapterConfig LoadProtobufConfig(this TypeAdapterConfig config, bool nameMatchingIgnoreCase = false)
     {
-        config.Default.NameMatchingStrategy(NameMatchingStrategy.IgnoreCase);
+        if (nameMatchingIgnoreCase)
+            config.Default.NameMatchingStrategy(NameMatchingStrategy.IgnoreCase);
 
         config.Default.UseDestinationValue(t => t.SetterModifier == AccessModifier.None &&
                                                 t.Type.IsGenericType &&
